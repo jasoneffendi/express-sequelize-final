@@ -14,7 +14,8 @@
                 <td><%=row.kota%></td>
                 <td>
                 <%for(var i = 0; i < row.Items.length; i++) {%>
-                    <%=i+1%>: <%=row.Items[i].name%> @ <%=row.Items[i].SupplierItem.Price%>
+                    <%var num = 'Rp. ' + row.Items[i].SupplierItem.Price.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");%>
+                    <%=i+1%>: <%=row.Items[i].name%> @ <%=num%>
                 <%}%>
                 </td>
                 <td><a href ="supplier/<%=row.id%>/addItem">Assign Item</a></td>
