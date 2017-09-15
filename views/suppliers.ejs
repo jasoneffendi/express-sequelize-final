@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+        <h1><%= title %></h1>
+    <p>Welcome to <%= title %></p>
+      <table>
+          <%data_supplier.forEach(row => {%>
+            <tr><%=row.name%></tr>
+            <tr><%=row.kota%></tr>
+            <tr><a href ="supplier/edit/<%=row.id%>">Edit</a></tr>
+            <tr><a href ="supplier/delete/<%=row.id%>">Delete</a></tr>
+          <%})%>
+      </table>
+    <a href="supplier/add">Add a Supplier</a>
+  </body>
+</html>
