@@ -13,6 +13,11 @@
             <td><%=row.name%></td>
             <td><%=row.brand%></td>
             <td><%=row.codeitem%></td>
+            <td>
+            <%for(var i = 0; i < row.Suppliers.length; i++) {%>
+              <%=i+1%>  <%=row.Suppliers[i].name%>
+            <%}%>
+            </td>
             <td><a href ="item/edit/<%=row.id%>">Edit</a></td>
             <td><a href ="item/delete/<%=row.id%>">Delete</a></td>
             </tr>

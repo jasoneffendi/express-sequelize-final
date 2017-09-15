@@ -14,7 +14,7 @@
     </div>
         <%})%>
       </table>
-      <form class="" action="/<%=data_supplier[0].id%>/addItem" method="post">
+      <form class="" action="/supplier/<%=data_supplier[0].id%>/addItem" method="post">
         <select class="" name="ItemId">
           <% data_item.forEach(row => { %>
           <option value="<%=row.id%>"><%=row.name%></option>

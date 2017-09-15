@@ -4,7 +4,9 @@ var models = require('../models')
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-    models.Item.findAll()
+    models.Item.findAll({
+        include: [{model: models.Suppliers}]
+    })
     .then(Items => {
         res.render('items', { title: 'Items' , data_item: Items});
         // res.send(Items)

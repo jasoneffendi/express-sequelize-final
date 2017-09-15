@@ -84,23 +84,6 @@ router.get('/:id/addItem', (req, res) => {
     })
   })
 
-//   router.post('/:id/addItem', (req, res) => {
-//     models.SupplierItem.create({
-//       SupplierId: `${req.params.id}`,
-//       ItemId: `${req.body.ItemId}`,
-//       Price: `${req.body.Price}`,
-//       createdAt: new Date(),
-//       updatedAt: new Date()
-//     })
-//     .then(() => {
-//       res.redirect('/supplier')
-//     // res.send()
-//     })
-//     .catch(err => {
-//       console.log(err);
-//     })
-//   })
-
   router.post('/:id/addItem', (req,res) => {
       models.SupplierItem.create({
           SupplierId: `${req.params.id}`,
@@ -110,7 +93,8 @@ router.get('/:id/addItem', (req, res) => {
           updatedAt: new Date()
       })
       .then(() => {
-          res.send('Halo')
+        //   res.send('Halo')
+          res.redirect('/supplier')
       })
       .catch(err => {
           console.log(err)
