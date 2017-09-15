@@ -9,12 +9,21 @@
     <p>Welcome to <%= title %></p>
       <table>
           <%data_supplier.forEach(row => {%>
-            <tr><%=row.name%></tr>
-            <tr><%=row.kota%></tr>
-            <tr><a href ="supplier/edit/<%=row.id%>">Edit</a></tr>
-            <tr><a href ="supplier/delete/<%=row.id%>">Delete</a></tr>
+            <tr>
+                <td><%=row.name%></td>
+                <td><%=row.kota%></td>
+                <td>
+                <%for(var i = 0; i < row.Items.length; i++) {%>
+                    Payee <%=i+1%>: <%=row.Items[i].name%>
+                <%}%>
+                </td>
+                <td><a href ="supplier/<%=row.id%>/addItem">Add Item</a></td>
+                <td><a href ="supplier/edit/<%=row.id%>">Edit</a></td>
+                <td><a href ="supplier/delete/<%=row.id%>">Delete</a></td>
+            </tr>
           <%})%>
       </table>
     <a href="supplier/add">Add a Supplier</a>
+    <a href="/">Home</a>
   </body>
 </html>

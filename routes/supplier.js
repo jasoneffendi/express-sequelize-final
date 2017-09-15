@@ -4,9 +4,12 @@ var models = require('../models')
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-    models.Suppliers.findAll()
+    models.Suppliers.findAll({
+        include : [{model: models.Item}]
+    })
     .then(suppliers => {
         res.render('suppliers', { title: 'Suppliers' , data_supplier: suppliers});
+        // res.send(suppliers)
     })
 });
 
@@ -58,6 +61,60 @@ router.get('/edit/:id/', (req, res) => {
     .catch(err => {
       console.log(err);
     })
+  })
+
+//add Item
+router.get('/:id/addItem', (req, res) => {
+    models.Suppliers.findAll({
+      where: {
+        id: `${req.params.id}`
+      }
+    })
+    .then( supplier => {
+        models.Item.findAll()
+        .then(item => {
+            res.render('addSupplierItem', {data_supplier: supplier, data_item: item})
+        })
+        .catch(err => {
+            console.log(err);
+          })
+    })
+    .catch(err => {
+      console.log(err);
+    })
+  })
+
+//   router.post('/:id/addItem', (req, res) => {
+//     models.SupplierItem.create({
+//       SupplierId: `${req.params.id}`,
+//       ItemId: `${req.body.ItemId}`,
+//       Price: `${req.body.Price}`,
+//       createdAt: new Date(),
+//       updatedAt: new Date()
+//     })
+//     .then(() => {
+//       res.redirect('/supplier')
+//     // res.send()
+//     })
+//     .catch(err => {
+//       console.log(err);
+//     })
+//   })
+
+  router.post('/:id/addItem', (req,res) => {
+      models.SupplierItem.create({
+          SupplierId: `${req.params.id}`,
+          ItemId: `${req.body.ItemId}`,
+          Price: `${req.body.Price}`,
+          createdAt: new Date(),
+          updatedAt: new Date()
+      })
+      .then(() => {
+          res.send('Halo')
+      })
+      .catch(err => {
+          console.log(err)
+      })
   })
 //delete
   router.get('/delete/:id/', (req, res) => {

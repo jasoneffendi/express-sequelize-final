@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+        <h1><%= title %></h1>
+    <p>Welcome to <%= title %></p>
+      <table>
+          <%data_item.forEach(row => {%>
+            <tr>
+            <td><%=row.name%></td>
+            <td><%=row.brand%></td>
+            <td><%=row.codeitem%></td>
+            <td><a href ="item/edit/<%=row.id%>">Edit</a></td>
+            <td><a href ="item/delete/<%=row.id%>">Delete</a></td>
+            </tr>
+          <%})%>
+      </table>
+    <a href="item/add">Add a item</a>
+    <a href="/">Home</a>
+  </body>
+</html>

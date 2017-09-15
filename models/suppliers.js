@@ -10,5 +10,9 @@ module.exports = function(sequelize, DataTypes) {
       }
     }
   });
+  Suppliers.associate = (models) => {
+    Suppliers.hasMany(models.Item)
+    Suppliers.belongsToMany(models.Item, {through: 'SupplierItem'})
+  };
   return Suppliers;
 };

@@ -4,18 +4,19 @@ var models = require('../models')
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-    models.Items.findAll()
+    models.Item.findAll()
     .then(Items => {
-        res.render('Items', { title: 'Items' , data_supplier: Items});
+        res.render('items', { title: 'Items' , data_item: Items});
+        // res.send(Items)
     })
 });
 
 router.get('/add', (req,res) => {
-    res.render('addSupplier', {title: 'Halaman add Supplier'})
+    res.render('addItem', {title: 'Halaman add Item'})
   })
 
 router.post('/add', (req,res) => {
-    models.Items.create({
+    models.Item.create({
       name: `${req.body.name}`,
       brand: `${req.body.brand}`,
       codeitem: `${req.body.codeitem}`,
@@ -23,19 +24,18 @@ router.post('/add', (req,res) => {
       updatedAt: new Date()
     })
     .then( order => {
-      res.redirect('/supplier')
+      res.redirect('/item')
     })
   })
 //edit
 router.get('/edit/:id/', (req, res) => {
-    models.Items.findAll({
+    models.Item.findAll({
       where: {
         id: `${req.params.id}`
       }
     })
     .then( supplier => {
-      res.render('supplierEdit',{data_supplier: supplier})
-      // res.send(student)
+      res.render('itemEdit',{data_supplier: supplier})
     })
     .catch(err => {
       console.log(err);
@@ -44,7 +44,7 @@ router.get('/edit/:id/', (req, res) => {
   
 
   router.post('/edit/:id', (req, res) => {
-    models.Items.update({
+    models.Item.update({
       name: `${req.body.name}`,
       brand: `${req.body.brand}`,
       codeitem: `${req.body.codeitem}`,
@@ -55,7 +55,7 @@ router.get('/edit/:id/', (req, res) => {
   
     })
     .then(teacher => {
-      res.redirect('/supplier')
+      res.redirect('/item')
     })
     .catch(err => {
       console.log(err);
@@ -63,14 +63,14 @@ router.get('/edit/:id/', (req, res) => {
   })
 //delete
   router.get('/delete/:id/', (req, res) => {
-    models.Items.destroy({
+    models.Item.destroy({
       where: {
         id: `${req.params.id}`
       }
     })
     .then((row_deleted) => {
         console.log('DELETE SUCCESS');
-        res.redirect('/supplier')
+        res.redirect('/item')
     })
     .catch(err => {
       console.log(err);

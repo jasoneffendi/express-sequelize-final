@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <div>
+      <%data_supplier.forEach(row => {%>
+        <table>
+            <tr>
+                <td><%=row.id%></td>
+                <td>Name</td>
+                <td> <%=row.name%> </td>
+                <td>City</td>
+                <td> <%=row.kota%> </td>
+            </tr>
+    </div>
+        <%})%>
+      </table>
+      <form class="" action="/<%=data_supplier[0].id%>/addItem" method="post">
+        <select class="" name="ItemId">
+          <% data_item.forEach(row => { %>
+          <option value="<%=row.id%>"><%=row.name%></option>
+          <% }) %>
+        </select>
+        <input type="number" name="Price">
+        <button type="submit">Add Item</button>
+      </form>
+  </body>
+</html>
